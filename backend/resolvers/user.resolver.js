@@ -1,4 +1,4 @@
-import { users } from "../DummyData/data.js";
+
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 export const userResolver = {
@@ -30,12 +30,12 @@ export const userResolver = {
           throw new Error("All fields are required");
         }
 
-        const isUserExist = users.find((user) => user.username === username);
-        if (isUserExist) {
-          throw new Error("User already exist");
-        }
+        const existingUser = await User.findOne({ username });
+				if (existingUser) {
+					throw new Error("User already exists");
+				}
 
-        const salt = bcrypt.genSaltSync(10);
+        const salt =await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
         let profilePicture =

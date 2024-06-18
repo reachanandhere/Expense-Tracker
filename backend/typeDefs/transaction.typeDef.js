@@ -18,7 +18,7 @@ export const transactionTypeDef = `#graphql
     type Mutation {
         createTransaction(input: CreateTransactionInput!) : Transaction!
         updateTransaction(input: UpdateTransactionInput!) : Transaction!
-        deleleTransaction(transactionId: ID!) : Transaction!
+        deleteTransaction(transactionId: ID!) : Transaction!
     }
 
     input CreateTransactionInput {
