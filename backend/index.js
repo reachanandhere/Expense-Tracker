@@ -7,3 +7,7 @@ const server = new ApolloServer({
     typeDefs: MergedTypeDefs,
     resolvers: mergedResolver
 })
+
+const { url } = await startStandaloneServer(server)
+
+console.log(`Server ready at ${url}`)
