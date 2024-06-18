@@ -8,6 +8,7 @@ import { MergedTypeDefs } from "./typeDefs/index.js";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import dotenv from "dotenv"
+import { connectDB } from "./db/connectDB.js";
 
 dotenv.config()
 
@@ -36,4 +37,5 @@ app.use(
 );
 
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+await connectDB()
 console.log('Server is ready!')
