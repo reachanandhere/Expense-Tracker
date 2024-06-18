@@ -32,7 +32,7 @@ export const userTypeDef = `#graphql
         password: String!
    }
 
-   input LogoutResponse{
+   type LogoutResponse{
         message: String!
    }
 
