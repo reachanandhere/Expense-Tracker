@@ -7,10 +7,15 @@ import { mergedResolver } from "./resolvers/index.js";
 import { MergedTypeDefs } from "./typeDefs/index.js";
 import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import { resolve } from "path";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express();
 const httpServer = http.createServer(app);
+
+
+
 
 const server = new ApolloServer({
   typeDefs: MergedTypeDefs,
