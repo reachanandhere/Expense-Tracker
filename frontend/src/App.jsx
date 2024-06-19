@@ -11,7 +11,7 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   const { loading, data, error } = useQuery(GET_AUTHENTICATED_USER);
-
+	//console.log(data.authUser.profilePicture)
   if (loading) return null
   return (
     <>
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={data?.authUser ? <HomePage /> : <Navigate to="/login" />}
+          element={data?.authUser ? <HomePage userData={data?.authUser} /> : <Navigate to="/login" />}
         />
         <Route
           path="/login"
