@@ -23,6 +23,28 @@ export const transactionResolver = {
         throw new Error("Error in fetching transaction");
       }
     },
+    categoryStatistics: async (_, __, context) => {
+      if (!context.getUser()) {
+        throw new Error("User not authenticated");
+      }
+
+      console.log("ere");
+      const userId = context.getUser()._id;
+      const transactions = await Transaction.find({ userId });
+      const categoryMap = {};
+      transactions.forEach((transaction) => {
+        if (categoryMap[transaction.category]) {
+          categoryMap[transaction.category] += transaction.amount; 
+        } else {
+          categoryMap[transaction.category] = transaction.amount;
+        }
+      });
+      console.log("categoryMap", categoryMap);
+      return Object.entries(categoryMap).map(([category, totalAmount]) => ({
+        category,
+        totalAmount,
+      }));
+    },
   },
   Mutation: {
     createTransaction: async (_, { input }, context) => {
@@ -45,7 +67,7 @@ export const transactionResolver = {
     },
     updateTransaction: async (_, { input }) => {
       try {
-        console.log(input)
+        console.log(input);
         const updatedTransaction = await Transaction.findByIdAndUpdate(
           input.transactionId,
           input,
@@ -53,7 +75,7 @@ export const transactionResolver = {
             new: true,
           }
         );
-        console.log(updatedTransaction)
+        console.log(updatedTransaction);
         return updatedTransaction;
       } catch (err) {
         console.error("Error updating transaction:", err);
