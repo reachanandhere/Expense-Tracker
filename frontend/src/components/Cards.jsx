@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import Card from "./Card";
 import { GET_TRANSACTIONS } from "../graphql/query/transaction.query";
 
-const Cards = () => {
+const Cards = ({profilePicture}) => {
   const { data, loading, error } = useQuery(GET_TRANSACTIONS);
   if (loading) return null;
   if (error) return `Error! ${error.message}`;
@@ -16,6 +16,7 @@ const Cards = () => {
             key={transaction._id}
             cardType={transaction.category}
             transaction={transaction}
+            profilePicture={profilePicture}
           />
         ))}
 

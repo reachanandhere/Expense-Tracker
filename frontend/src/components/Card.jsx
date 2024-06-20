@@ -16,7 +16,8 @@ const categoryColorMap = {
   // Add more categories and corresponding color classes as needed
 };
 
-const Card = ({ cardType, transaction }) => {
+const Card = ({ cardType, transaction, profilePicture }) => {
+  let { description, paymentType, category, location } = transaction
     const [deleteTransaction, { loading, error }] = useMutation(DELETE_TRANSACTION, {
         refetchQueries: ["GetTransactions"],
     })
@@ -28,9 +29,9 @@ const Card = ({ cardType, transaction }) => {
   }  
 
 
-//   transaction.description = transaction.description[0].toUpperCase() + transaction.description.slice(1)
-//   transaction.paymentType = transaction.paymentType[0].toUpperCase() + transaction.paymentType.slice(1)
-//   transaction.category = transaction.category[0].toUpperCase() + transaction.category.slice(1)
+  description = transaction.description[0].toUpperCase() + transaction.description.slice(1)
+  paymentType = transaction.paymentType[0].toUpperCase() + transaction.paymentType.slice(1)
+  category = transaction.category[0].toUpperCase() + transaction.category.slice(1)
 
   const handleDeleteTransaction = async () => {
     try {
@@ -62,11 +63,11 @@ const Card = ({ cardType, transaction }) => {
         </div>
         <p className="text-white flex items-center gap-1">
           <BsCardText />
-          Description: {transaction.description}
+          Description: {description}
         </p>
         <p className="text-white flex items-center gap-1">
           <MdOutlinePayments />
-          Payment Type: {transaction.paymentType}
+          Payment Type: {paymentType}
         </p>
         <p className="text-white flex items-center gap-1">
           <FaSackDollar />
@@ -74,12 +75,12 @@ const Card = ({ cardType, transaction }) => {
         </p>
         <p className="text-white flex items-center gap-1">
           <FaLocationDot />
-          Location: {transaction.location}
+          Location: {location}
         </p>
         <div className="flex justify-between items-center">
           <p className="text-xs text-black font-bold">{formattedDate}</p>
           <img
-            src={"https://tecdn.b-cdn.net/img/new/avatars/2.webp"}
+            src={profilePicture}
             className="h-8 w-8 border rounded-full"
             alt=""
           />

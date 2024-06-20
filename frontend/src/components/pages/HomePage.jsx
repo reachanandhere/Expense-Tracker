@@ -11,7 +11,8 @@ import toast from "react-hot-toast";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const HomePage = ({profilePicture}) => {
+const HomePage = ({userData}) => {
+  const { profilePicture } = userData;
   const [logout, { loading, error }] = useMutation(LOGOUT, {
     refetchQueries: ["GetAuthenticatedUser"],
   });
@@ -78,7 +79,7 @@ const HomePage = ({profilePicture}) => {
 
           <TransactionForm />
         </div>
-        <Cards />
+        <Cards profilePicture={profilePicture} />
       </div>
     </>
   );

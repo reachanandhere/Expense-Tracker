@@ -42,7 +42,9 @@ export const userResolver = {
             ? process.env.GENDER_MALE
             : process.env.GENDER_FEMALE;
 
-        const newUser = new User({
+          console.log(profilePicture
+            )
+            const newUser = new User({
           username,
           name,
           password: hashedPassword,

@@ -15,7 +15,8 @@ export const CREATE_TRANSACTION = gql`
 `;
 
 export const UPDATE_TRANSACTION = gql`
-    mutation UpdateTransaction($input: UpdateTransactionInput!) {
+    mutation updateTransaction($input: UpdateTransactionInput!) {
+        
         updateTransaction(input: $input) {
             _id
             description

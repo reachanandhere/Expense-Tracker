@@ -13,6 +13,7 @@ function App() {
   const { loading, data, error } = useQuery(GET_AUTHENTICATED_USER);
 	//console.log(data.authUser.profilePicture)
   if (loading) return null
+  console.log(data)
   return (
     <>
       {data?.authUser && <Header />}

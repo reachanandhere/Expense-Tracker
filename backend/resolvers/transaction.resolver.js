@@ -45,6 +45,7 @@ export const transactionResolver = {
     },
     updateTransaction: async (_, { input }) => {
       try {
+        console.log(input)
         const updatedTransaction = await Transaction.findByIdAndUpdate(
           input.transactionId,
           input,
@@ -52,6 +53,7 @@ export const transactionResolver = {
             new: true,
           }
         );
+        console.log(updatedTransaction)
         return updatedTransaction;
       } catch (err) {
         console.error("Error updating transaction:", err);
