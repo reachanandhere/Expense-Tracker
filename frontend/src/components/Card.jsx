@@ -42,7 +42,7 @@ const Card = ({ cardType, transaction, profilePicture }) => {
       });
       toast.success("Transaction deleted successfully");
     } catch (err) {
-      console.log(err);
+      toast.error("Failed to delete transaction");
     }
   }
 

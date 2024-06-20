@@ -45,6 +45,7 @@ const SignUpPage = () => {
 			});
 		} catch(err){
 			console.log(err);
+			toast.error("Failed to sign up");
 		}
 	};
 
