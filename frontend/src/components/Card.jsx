@@ -27,6 +27,11 @@ const Card = ({ cardType, transaction }) => {
     day: "2-digit",
   }  
 
+
+//   transaction.description = transaction.description[0].toUpperCase() + transaction.description.slice(1)
+//   transaction.paymentType = transaction.paymentType[0].toUpperCase() + transaction.paymentType.slice(1)
+//   transaction.category = transaction.category[0].toUpperCase() + transaction.category.slice(1)
+
   const handleDeleteTransaction = async () => {
     try {
       await deleteTransaction({
@@ -50,7 +55,7 @@ const Card = ({ cardType, transaction }) => {
           </h2>
           <div className="flex items-center gap-2">
             <FaTrash className={"cursor-pointer"}  onClick={handleDeleteTransaction}/>
-            <Link to={`/transaction/123`}>
+            <Link to={`/transaction/${transaction._id}`}>
               <HiPencilAlt className="cursor-pointer" size={20} />
             </Link>
           </div>

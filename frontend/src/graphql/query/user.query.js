@@ -4,7 +4,7 @@ export const GET_AUTHENTICATED_USER = gql`
   query GetAuthenticatedUser {
     authUser {
       _id
-     name
+      name
       username
       profilePicture
       gender
