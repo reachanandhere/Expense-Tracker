@@ -14,7 +14,7 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import { buildContext } from "graphql-passport";
 import { connectDB } from "./db/connectDB.js";
 import { configurePassport } from "./passport/passport.config.js";
-
+import job from "./cron.js";  // Import the cron job
 dotenv.config();
 
 const MongoDBStore = connectMongo(session);
@@ -47,6 +47,7 @@ app.use(passport.session());
 
 configurePassport();
 
+job.start(); // Start the cron job
 
 const httpServer = http.createServer(app);
 

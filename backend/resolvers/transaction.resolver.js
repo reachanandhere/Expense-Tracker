@@ -28,7 +28,7 @@ export const transactionResolver = {
         throw new Error("User not authenticated");
       }
 
-      console.log("ere");
+     
       const userId = context.getUser()._id;
       const transactions = await Transaction.find({ userId });
       const categoryMap = {};
