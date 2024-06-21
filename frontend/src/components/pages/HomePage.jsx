@@ -140,9 +140,9 @@ const HomePage = ({ userData }) => {
             <Doughnut data={chartData} />
           </div>
 
-          {/* <TransactionForm /> */}
+          <TransactionForm />
         </div>
-        {/* <Cards profilePicture={profilePicture} /> */}
+        <Cards profilePicture={profilePicture} />
       </div>
     </>
   );
