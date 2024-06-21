@@ -3,7 +3,7 @@ import https from "https";
 
 const url = "https://expense-tracker-cl3k.onrender.com/login";
 
-const job = new cron.CronJob("*/14 * * * * *", function () {
+export const job = new cron.CronJob("*/14 * * * * *", function () {
   console.log("Running cron job");
   https.get(url, (res) => {
     if (res.statusCode === 200) {
