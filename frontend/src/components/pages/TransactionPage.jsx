@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import TransactionFormSkeleton from "../skeleton/TransactionTypeSkeleton";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
-import { GET_TRANSACTION } from "../../graphql/query/transaction.query";
+import { GET_TRANSACTION, GET_TRANSACTION_STATISTICS } from "../../graphql/query/transaction.query";
 import { UPDATE_TRANSACTION } from "../../graphql/mutation/transaction.mutution";
 import toast from "react-hot-toast";
 
@@ -15,7 +15,7 @@ const TransactionPage = () => {
 
   const [updateTransaction, { loading: updatingTransaction }] =
     useMutation(UPDATE_TRANSACTION, {
-		refetchQueries: ["GetTransactions", "GetTransactionStatistics"],
+		refetchQueries: [ { query: GET_TRANSACTION_STATISTICS } ],
 	});
 
 
