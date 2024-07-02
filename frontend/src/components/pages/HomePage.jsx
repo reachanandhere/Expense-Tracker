@@ -1,5 +1,11 @@
 import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, layouts } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  layouts,
+} from "chart.js";
 
 import Cards from "../Cards";
 import TransactionForm from "../TransactionForm";
@@ -12,30 +18,6 @@ import { GET_TRANSACTION_STATISTICS } from "../../graphql/query/transaction.quer
 import { useEffect, useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-const chartData = {
-  labels: ["Saving", "Expense", "Investment"],
-  datasets: [
-    {
-      label: "%",
-      data: [13, 8, 3],
-      backgroundColor: [
-        "rgba(75, 192, 192)",
-        "rgba(255, 99, 132)",
-        "rgba(54, 162, 235)",
-      ],
-      borderColor: [
-        "rgba(75, 192, 192)",
-        "rgba(255, 99, 132)",
-        "rgba(54, 162, 235, 1)",
-      ],
-      borderWidth: 1,
-      borderRadius: 100,
-      spacing: 11,
-      cutout: 130,
-    },
-  ],
-};
 
 const HomePage = ({ userData }) => {
   const { data } = useQuery(GET_TRANSACTION_STATISTICS);
@@ -57,8 +39,11 @@ const HomePage = ({ userData }) => {
 
   useEffect(() => {
     if (data?.categoryStatistics) {
-      const category = data.categoryStatistics?.map((stat) => stat.category[0].toUpperCase()+stat.category.slice(1).toLowerCase());
-     
+      const category = data.categoryStatistics?.map(
+        (stat) =>
+          stat.category[0].toUpperCase() + stat.category.slice(1).toLowerCase()
+      );
+
       const totalAmount = data.categoryStatistics?.map(
         (stat) => stat.totalAmount
       );
@@ -78,9 +63,8 @@ const HomePage = ({ userData }) => {
         }
       });
 
-       setChartData(prevState=>{
+      setChartData((prevState) => {
         return {
-         
           labels: category,
           datasets: [
             {
@@ -89,11 +73,10 @@ const HomePage = ({ userData }) => {
               data: totalAmount,
               backgroundColor,
               borderColor,
-              
             },
-          ], 
-        }
-       })
+          ],
+        };
+      });
     }
   }, [data]);
 
@@ -136,13 +119,15 @@ const HomePage = ({ userData }) => {
           )}
         </div>
         <div className="flex flex-wrap w-full justify-center items-center gap-6">
-          <div className="h-[330px] w-[330px] md:h-[360px] md:w-[360px]  ">
-            <Doughnut data={chartData} />
-          </div>
+          {chartData?.labels.length > 0 && (
+            <div className="h-[330px] w-[330px] md:h-[360px] md:w-[360px]  ">
+              <Doughnut data={chartData} />
+            </div>
+          )}
 
           <TransactionForm />
         </div>
-        <Cards profilePicture={profilePicture} />
+        {/* <Cards profilePicture={profilePicture} /> */}
       </div>
     </>
   );
