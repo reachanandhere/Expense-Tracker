@@ -127,7 +127,7 @@ const HomePage = ({ userData }) => {
 
           <TransactionForm />
         </div>
-        {/* <Cards profilePicture={profilePicture} /> */}
+        <Cards profilePicture={profilePicture} />
       </div>
     </>
   );
