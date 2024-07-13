@@ -6,3 +6,5 @@
 
 Expense Tracker is an interactive web application to track your expenses. It is built using React, and Node and it utilizes the power of GraphQL with MongoDB to prevent overfetching of data. It also uses Apollo Client for state management and Passport for authentication.
 
+Live : https://expense-tracker-cl3k.onrender.com/
+
